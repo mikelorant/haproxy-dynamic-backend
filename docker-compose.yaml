@@ -1,0 +1,15 @@
+version: '2.4'
+
+services:
+  haproxy:
+    image: haproxy:2.0.1-alpine
+    volumes:
+    - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    ports:
+    - '8080'
+    environment:
+      DNS_SERVER: 8.8.8.8
+      BIND_PORT: 8080
+      BACKEND_SERVER: www.google.com:443
+      HOST_HEADER: www.google.com
+      CACHE_SIZE: 100
